@@ -1,0 +1,843 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ═══════════════════════════════════════════════════════
+   KHIZANA — Cinematic Design System
+   Warm dark luxury · Gold accents · Architectural precision
+═══════════════════════════════════════════════════════ */
+
+@theme inline {
+  --font-display: "Fraunces", "Playfair Display", ui-serif, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-cream: var(--cream);
+  --color-walnut: var(--walnut);
+  --color-ink: var(--ink);
+}
+
+:root {
+  --background: oklch(0.10 0.012 60);
+  --foreground: oklch(0.96 0.015 80);
+
+  --card: oklch(0.14 0.018 60);
+  --card-foreground: oklch(0.96 0.015 80);
+  --popover: oklch(0.14 0.018 60);
+  --popover-foreground: oklch(0.96 0.015 80);
+
+  --primary: oklch(0.78 0.13 78);            /* warm gold */
+  --primary-foreground: oklch(0.10 0.012 60);
+  --secondary: oklch(0.20 0.022 60);
+  --secondary-foreground: oklch(0.96 0.015 80);
+  --muted: oklch(0.20 0.018 60);
+  --muted-foreground: oklch(0.65 0.02 80);
+  --accent: oklch(0.26 0.045 55);
+  --accent-foreground: oklch(0.96 0.015 80);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.26 0.018 60 / 50%);
+  --input: oklch(0.26 0.018 60);
+  --ring: oklch(0.78 0.13 78);
+
+  --gold: oklch(0.82 0.14 82);
+  --gold-soft: oklch(0.88 0.08 85);
+  --cream: oklch(0.94 0.03 85);
+  --walnut: oklch(0.35 0.06 45);
+  --ink: oklch(0.08 0.01 60);
+
+  --gradient-hero: radial-gradient(ellipse at top, oklch(0.20 0.05 55 / 0.8), transparent 60%),
+                   linear-gradient(180deg, oklch(0.12 0.015 60), oklch(0.08 0.01 60));
+  --gradient-gold: linear-gradient(135deg, oklch(0.85 0.14 82), oklch(0.72 0.15 65));
+  --gradient-warm: linear-gradient(135deg, oklch(0.26 0.07 55), oklch(0.16 0.025 60));
+
+  --shadow-glow: 0 30px 80px -20px oklch(0.78 0.13 78 / 0.35);
+  --shadow-card: 0 20px 60px -20px oklch(0 0 0 / 0.7);
+  --shadow-inset-gold: inset 0 1px 0 oklch(0.95 0.08 85 / 0.2);
+
+  /* ── Wardrobe Material Colors ── */
+  --mat-oak:    oklch(0.65 0.07 60);
+  --mat-walnut: oklch(0.38 0.06 42);
+  --mat-greige: oklch(0.75 0.03 75);
+  --mat-white:  oklch(0.92 0.01 90);
+  --mat-black:  oklch(0.18 0.01 60);
+  --mat-glass:  oklch(0.70 0.02 200 / 0.3);
+
+  --mat-oak-grain:    repeating-linear-gradient(90deg, oklch(0.60 0.08 58 / 0.35) 0px, transparent 2px, transparent 8px, oklch(0.68 0.06 62 / 0.2) 9px);
+  --mat-walnut-grain: repeating-linear-gradient(92deg, oklch(0.33 0.07 40 / 0.4) 0px, transparent 2px, transparent 6px, oklch(0.42 0.05 44 / 0.25) 7px);
+
+  /* ── Scene ambient light colors ── */
+  --scene-1-ambient: oklch(0.10 0.012 60);
+  --scene-5-ambient: oklch(0.15 0.025 75);
+}
+
+/* ═══════════════════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════════════════ */
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   UTILITY CLASSES
+═══════════════════════════════════════════════════════ */
+@utility text-gradient-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-hero { background: var(--gradient-hero); }
+@utility bg-warm { background: var(--gradient-warm); }
+@utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility shadow-card { box-shadow: var(--shadow-card); }
+@utility border-gold { border-color: oklch(0.78 0.13 78 / 0.4); }
+
+/* ═══════════════════════════════════════════════════════
+   ANIMATION KEYFRAMES
+═══════════════════════════════════════════════════════ */
+
+/* Classic utilities */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+/* Cinematic scene keyframes */
+@keyframes laser-draw {
+  from { stroke-dashoffset: 1000; opacity: 0; }
+  10%  { opacity: 1; }
+  to   { stroke-dashoffset: 0; opacity: 1; }
+}
+@keyframes dim-appear {
+  from { opacity: 0; transform: translateY(6px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes panel-rise {
+  from { transform: scaleY(0); transform-origin: bottom center; opacity: 0; }
+  to   { transform: scaleY(1); transform-origin: bottom center; opacity: 1; }
+}
+@keyframes shelf-slide {
+  from { transform: translateX(-40px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes label-float {
+  0%   { opacity: 0; transform: translateY(8px); }
+  20%  { opacity: 1; transform: translateY(0); }
+  80%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes mat-morph {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes door-open-left {
+  from { transform: perspective(600px) rotateY(0deg); }
+  to   { transform: perspective(600px) rotateY(-75deg); }
+}
+@keyframes door-open-right {
+  from { transform: perspective(600px) rotateY(0deg); }
+  to   { transform: perspective(600px) rotateY(75deg); }
+}
+@keyframes led-glow {
+  from { box-shadow: none; opacity: 0; }
+  to   { box-shadow: 0 0 20px 4px oklch(0.90 0.10 80 / 0.6); opacity: 1; }
+}
+@keyframes panel-explode-left {
+  from { transform: translateX(0) translateZ(0); }
+  to   { transform: translateX(-80px) translateZ(60px); }
+}
+@keyframes panel-explode-right {
+  from { transform: translateX(0) translateZ(0); }
+  to   { transform: translateX(80px) translateZ(60px); }
+}
+@keyframes panel-explode-top {
+  from { transform: translateY(0) translateZ(0); }
+  to   { transform: translateY(-60px) translateZ(40px); }
+}
+@keyframes dim-line-draw {
+  from { stroke-dashoffset: 300; opacity: 0; }
+  to   { stroke-dashoffset: 0; opacity: 1; }
+}
+@keyframes proposal-rise {
+  from { opacity: 0; transform: translateY(40px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes pullback {
+  from { transform: scale(1); opacity: 1; }
+  to   { transform: scale(0.6) translateY(20px); opacity: 0.9; }
+}
+@keyframes particle-drift {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  20%  { opacity: 0.6; }
+  100% { transform: translateY(-120px) translateX(30px); opacity: 0; }
+}
+@keyframes scene-headline-in {
+  from { opacity: 0; transform: translateY(20px) skewY(1deg); }
+  to   { opacity: 1; transform: translateY(0) skewY(0); }
+}
+@keyframes scene-headline-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-16px); }
+}
+@keyframes crosshair-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes number-count {
+  from { content: "0"; }
+  to   { content: "100"; }
+}
+@keyframes ambient-breathe {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   ANIMATION UTILITIES
+═══════════════════════════════════════════════════════ */
+@utility animate-float        { animation: float-slow 6s ease-in-out infinite; }
+@utility animate-fade-up      { animation: fade-up 0.8s ease-out both; }
+@utility animate-glow-pulse   { animation: glow-pulse 3s ease-in-out infinite; }
+@utility animate-laser-draw   { animation: laser-draw 1.8s cubic-bezier(0.25,0.1,0.25,1) forwards; }
+@utility animate-panel-rise   { animation: panel-rise 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
+@utility animate-shelf-slide  { animation: shelf-slide 0.6s cubic-bezier(0.22,1,0.36,1) forwards; }
+@utility animate-label-float  { animation: label-float 3s ease-in-out forwards; }
+@utility animate-door-left    { animation: door-open-left 1.2s cubic-bezier(0.22,1,0.36,1) forwards; }
+@utility animate-door-right   { animation: door-open-right 1.2s cubic-bezier(0.22,1,0.36,1) forwards; }
+@utility animate-led           { animation: led-glow 0.8s ease-out forwards; }
+@utility animate-proposal      { animation: proposal-rise 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
+@utility animate-ambient       { animation: ambient-breathe 8s ease-in-out infinite; }
+
+/* ═══════════════════════════════════════════════════════
+   CINEMATIC LAYOUT
+═══════════════════════════════════════════════════════ */
+
+/* The tall scroll container that pins the stage */
+.cinematic-scroll-container {
+  position: relative;
+}
+
+/* The sticky viewport that stays in view while scrolling */
+.cinematic-stage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dark cinematic environment */
+.cinematic-env {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, oklch(0.15 0.025 55 / 0.8) 0%, oklch(0.08 0.01 60) 70%);
+  transition: background 1.5s ease;
+}
+
+/* Grid floor lines (architectural feel) */
+.cinematic-env::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(oklch(0.78 0.13 78 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.78 0.13 78 / 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(600px) rotateX(60deg) translateY(40%);
+  transform-origin: center bottom;
+  opacity: 0.5;
+}
+
+/* Scene overlay — full-screen text overlay */
+.scene-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 10vh;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ═══════════════════════════════════════════════════════
+   WARDROBE CSS 3D SYSTEM
+═══════════════════════════════════════════════════════ */
+
+.wardrobe-stage {
+  position: relative;
+  width: 320px;
+  height: 480px;
+  perspective: 1200px;
+  perspective-origin: 50% 40%;
+  transform-style: preserve-3d;
+}
+
+.wardrobe-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateY(var(--wr-rotY, -12deg)) rotateX(var(--wr-rotX, 4deg));
+  transition: transform 1.4s cubic-bezier(0.25,0.1,0.25,1);
+}
+
+/* Panels */
+.w-panel {
+  position: absolute;
+  background: var(--mat-oak);
+  border: 1px solid oklch(0.78 0.13 78 / 0.15);
+  transform-style: preserve-3d;
+  transition: all 1.2s cubic-bezier(0.25,0.1,0.25,1);
+  backface-visibility: hidden;
+}
+
+/* Top panel */
+.w-top {
+  top: 0; left: 0; right: 0;
+  height: 14px;
+  transform: rotateX(90deg);
+  transform-origin: top center;
+}
+/* Bottom panel */
+.w-bottom {
+  bottom: 0; left: 0; right: 0;
+  height: 14px;
+  transform: rotateX(-90deg);
+  transform-origin: bottom center;
+}
+/* Left side */
+.w-left {
+  top: 0; bottom: 0; left: 0;
+  width: 14px;
+  transform: rotateY(-90deg);
+  transform-origin: left center;
+}
+/* Right side */
+.w-right {
+  top: 0; bottom: 0; right: 0;
+  width: 14px;
+  transform: rotateY(90deg);
+  transform-origin: right center;
+}
+/* Back panel */
+.w-back {
+  top: 14px; bottom: 14px; left: 14px; right: 14px;
+  transform: translateZ(-14px);
+  background: var(--mat-walnut);
+  opacity: 0.7;
+}
+
+/* Door panels */
+.w-door-left {
+  position: absolute;
+  top: 14px; bottom: 14px; left: 14px;
+  width: calc(50% - 14px);
+  background: var(--mat-oak);
+  transform-origin: left center;
+  transform: perspective(800px) rotateY(var(--door-l-angle, 0deg));
+  transition: transform 1.4s cubic-bezier(0.22,1,0.36,1), background 1.2s ease;
+  border: 1px solid oklch(0.78 0.13 78 / 0.2);
+  z-index: 4;
+}
+.w-door-right {
+  position: absolute;
+  top: 14px; bottom: 14px; right: 14px;
+  width: calc(50% - 14px);
+  background: var(--mat-oak);
+  transform-origin: right center;
+  transform: perspective(800px) rotateY(var(--door-r-angle, 0deg));
+  transition: transform 1.4s cubic-bezier(0.22,1,0.36,1), background 1.2s ease;
+  border: 1px solid oklch(0.78 0.13 78 / 0.2);
+  z-index: 4;
+}
+
+/* Door handle */
+.w-door-left::after,
+.w-door-right::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 3px;
+  height: 32px;
+  background: oklch(0.82 0.14 82);
+  border-radius: 2px;
+  transform: translateY(-50%);
+  opacity: 0.9;
+  box-shadow: 0 0 8px oklch(0.82 0.14 82 / 0.5);
+}
+.w-door-left::after  { right: 10px; }
+.w-door-right::after { left: 10px; }
+
+/* Door grain overlay */
+.w-door-left .door-grain,
+.w-door-right .door-grain {
+  position: absolute;
+  inset: 0;
+  background: var(--mat-oak-grain);
+  transition: background 1.2s ease;
+  pointer-events: none;
+}
+
+/* Interior shelves */
+.w-interior {
+  position: absolute;
+  top: 14px; bottom: 14px; left: 14px; right: 14px;
+  overflow: hidden;
+  z-index: 1;
+}
+.w-shelf {
+  position: absolute;
+  left: 0; right: 0;
+  height: 6px;
+  background: var(--mat-oak);
+  border-top: 1px solid oklch(0.78 0.13 78 / 0.3);
+  transform-origin: left;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.w-shelf.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.w-rail {
+  position: absolute;
+  left: 8px; right: 8px;
+  height: 3px;
+  background: oklch(0.82 0.14 82 / 0.7);
+  border-radius: 2px;
+  opacity: 0;
+  transform: scaleX(0);
+  transition: opacity 0.5s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.w-rail.visible {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* LED strip */
+.w-led {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: oklch(0.95 0.08 80);
+  opacity: 0;
+  transition: opacity 0.8s ease, box-shadow 0.8s ease;
+}
+.w-led.on {
+  opacity: 1;
+  box-shadow: 0 0 16px 4px oklch(0.92 0.10 78 / 0.7), 0 0 40px 8px oklch(0.82 0.10 75 / 0.3);
+}
+
+/* Material states */
+.mat-oak    { background: var(--mat-oak)    !important; }
+.mat-walnut { background: var(--mat-walnut) !important; }
+.mat-greige { background: var(--mat-greige) !important; }
+.mat-white  { background: var(--mat-white)  !important; }
+.mat-black  { background: var(--mat-black)  !important; }
+.mat-glass  {
+  background: oklch(0.65 0.03 200 / 0.25) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid oklch(0.78 0.05 200 / 0.4) !important;
+}
+
+/* Explode states */
+.explode-left  { transform: translateX(-90px) translateZ(50px) !important; }
+.explode-right { transform: translateX(90px) translateZ(50px) !important; }
+.explode-top   { transform: translateY(-70px) translateZ(30px) !important; }
+.explode-bottom { transform: translateY(70px) translateZ(30px) !important; }
+
+/* ═══════════════════════════════════════════════════════
+   FLOATING LABELS
+═══════════════════════════════════════════════════════ */
+.floating-label {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid oklch(0.78 0.13 78 / 0.4);
+  background: oklch(0.10 0.012 60 / 0.85);
+  backdrop-filter: blur(12px);
+  font-size: 11px;
+  font-family: var(--font-sans);
+  color: oklch(0.82 0.14 82);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+.floating-label .check {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: oklch(0.78 0.13 78);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px;
+  color: oklch(0.10 0.012 60);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.floating-label.visible {
+  animation: label-float 3.5s ease-in-out forwards;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCENE HEADLINE
+═══════════════════════════════════════════════════════ */
+.scene-headline {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s cubic-bezier(0.25,0.1,0.25,1),
+              transform 0.9s cubic-bezier(0.22,1,0.36,1);
+  pointer-events: none;
+}
+.scene-headline.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scene-headline.exiting {
+  opacity: 0;
+  transform: translateY(-12px);
+  transition-duration: 0.5s;
+}
+.scene-sub {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: oklch(0.78 0.13 78);
+  margin-bottom: 12px;
+  opacity: 0;
+  transition: opacity 0.7s 0.2s ease;
+}
+.scene-headline.active .scene-sub { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════
+   LASER / SVG UTILITIES
+═══════════════════════════════════════════════════════ */
+.laser-svg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+.laser-line {
+  stroke: oklch(0.78 0.13 78);
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1.8s cubic-bezier(0.25,0.1,0.25,1);
+}
+.laser-line.drawn { stroke-dashoffset: 0; }
+
+/* Dimension text */
+.dim-text {
+  fill: oklch(0.78 0.13 78);
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transition: opacity 0.5s 1s ease;
+}
+.dim-text.visible { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════
+   PROPOSAL CARD
+═══════════════════════════════════════════════════════ */
+.proposal-card {
+  background: oklch(0.14 0.018 60 / 0.95);
+  border: 1px solid oklch(0.78 0.13 78 / 0.35);
+  border-radius: 20px;
+  padding: 24px 28px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 40px 80px -20px oklch(0 0 0 / 0.6),
+              0 0 0 1px oklch(0.78 0.13 78 / 0.08),
+              inset 0 1px 0 oklch(0.95 0.08 85 / 0.1);
+  min-width: 280px;
+  opacity: 0;
+  transform: translateY(32px) scale(0.97);
+  transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1),
+              transform 0.9s cubic-bezier(0.22,1,0.36,1);
+}
+.proposal-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.proposal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid oklch(0.78 0.13 78 / 0.1);
+  font-size: 13px;
+}
+.proposal-row:last-child { border-bottom: none; }
+.proposal-label { color: oklch(0.65 0.02 80); font-family: var(--font-sans); }
+.proposal-value { color: oklch(0.92 0.015 80); font-family: var(--font-display); }
+.proposal-approve {
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px;
+  background: oklch(0.78 0.13 78);
+  color: oklch(0.10 0.012 60);
+  border-radius: 999px;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.proposal-approve:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 24px oklch(0.78 0.13 78 / 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SKIP BUTTON
+═══════════════════════════════════════════════════════ */
+.skip-btn {
+  position: absolute;
+  bottom: 28px;
+  right: 28px;
+  z-index: 50;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: oklch(0.65 0.02 80);
+  background: none;
+  border: 1px solid oklch(0.65 0.02 80 / 0.3);
+  border-radius: 999px;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  pointer-events: all;
+}
+.skip-btn:hover {
+  color: oklch(0.82 0.14 82);
+  border-color: oklch(0.78 0.13 78 / 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL INDICATOR
+═══════════════════════════════════════════════════════ */
+.scroll-indicator {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.6;
+  pointer-events: none;
+  animation: fade-up 1s 2s ease-out both;
+}
+.scroll-indicator span {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: oklch(0.65 0.02 80);
+  font-family: var(--font-sans);
+}
+.scroll-mouse {
+  width: 20px;
+  height: 32px;
+  border: 1.5px solid oklch(0.65 0.02 80 / 0.6);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+.scroll-mouse::before {
+  content: "";
+  width: 2px;
+  height: 6px;
+  background: oklch(0.78 0.13 78);
+  border-radius: 1px;
+  animation: float-slow 1.5s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCENE PROGRESS BAR
+═══════════════════════════════════════════════════════ */
+.scene-progress {
+  position: absolute;
+  left: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 30;
+}
+.scene-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: oklch(0.65 0.02 80 / 0.4);
+  transition: background 0.4s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+.scene-dot.active {
+  background: oklch(0.78 0.13 78);
+  transform: scale(1.4);
+}
+
+/* ═══════════════════════════════════════════════════════
+   BEDROOM ENVIRONMENT
+═══════════════════════════════════════════════════════ */
+.bedroom-env {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  background:
+    linear-gradient(180deg, oklch(0.16 0.028 65 / 0.0) 0%, oklch(0.12 0.018 60 / 0.6) 100%);
+  pointer-events: none;
+}
+.bedroom-env.active { opacity: 1; }
+
+/* Ambient warm light when doors open */
+.wardrobe-glow {
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(ellipse at center, oklch(0.82 0.12 75 / 0.12) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.wardrobe-glow.on { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════
+   MANUFACTURING OVERLAY
+═══════════════════════════════════════════════════════ */
+.mfg-overlay {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 220px;
+  background: oklch(0.10 0.012 60 / 0.92);
+  border-left: 1px solid oklch(0.78 0.13 78 / 0.2);
+  backdrop-filter: blur(12px);
+  padding: 20px 16px;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1);
+}
+.mfg-overlay.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.mfg-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid oklch(0.78 0.13 78 / 0.08);
+  font-size: 11px;
+  font-family: var(--font-sans);
+  color: oklch(0.65 0.02 80);
+}
+.mfg-row .panel-id {
+  width: 28px;
+  height: 18px;
+  border: 1px solid oklch(0.78 0.13 78 / 0.4);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: oklch(0.78 0.13 78);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .wardrobe-stage { width: 220px; height: 340px; }
+  .mfg-overlay { width: 160px; font-size: 10px; }
+  .scene-progress { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-env::before { display: none; }
+  .w-panel, .w-door-left, .w-door-right, .w-shelf, .w-rail, .w-led {
+    transition: none !important;
+    animation: none !important;
+  }
+  .laser-line { transition: none; stroke-dashoffset: 0; }
+  .scene-headline { transition: none; opacity: 1; transform: none; }
+  .proposal-card { transition: none; opacity: 1; transform: none; }
+}
