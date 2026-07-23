@@ -244,6 +244,30 @@
   50%       { opacity: 0.7; transform: scale(1.05); }
 }
 
+/* Speed Demo Keyframes */
+@keyframes sd-pulse-ring {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+@keyframes sd-pop-in {
+  0%   { opacity: 0; transform: scale(0.4); }
+  70%  { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes sd-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes sd-glow-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.04); }
+}
+@keyframes sd-slide-left {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+
 /* ═══════════════════════════════════════════════════════
    ANIMATION UTILITIES
 ═══════════════════════════════════════════════════════ */

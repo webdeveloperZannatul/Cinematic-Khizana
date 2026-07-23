@@ -18,6 +18,8 @@ import {
   Send,
 } from "lucide-react";
 import CinematicExperience from "@/components/scenes/CinematicExperience";
+import SpeedDemo from "@/components/scenes/SpeedDemo";
+import Interactive3dStudio from "@/components/scenes/Interactive3dStudio";
 import textureWarm from "@/assets/texture-warm.jpg";
 import stepMeasure from "@/assets/step-measure.jpg";
 import stepGenerate from "@/assets/step-generate.jpg";
@@ -65,6 +67,8 @@ const Nav = () => {
     return () => window.removeEventListener("scroll", on);
   }, []);
   const links = [
+    { href: "#studio", label: "3D Studio & Quote" },
+    { href: "#demo", label: "60s Speed Demo" },
     { href: "#features", label: "Features" },
     { href: "#pricing", label: "Pricing" },
     { href: "#trust", label: "Why Khizana" },
@@ -675,6 +679,8 @@ const Landing = () => (
     {/* ── MARKETING CONTENT ── */}
     <main>
       <TransitionStrip />
+      <Interactive3dStudio />
+      <SpeedDemo />
       <Transformation />
       <Workflow />
       <Features />
